@@ -8,11 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-import static com.codepath.todoapp.R.id.tvTaskName;
 
 /**
  * Created by keyulun on 2017/1/31.
@@ -37,6 +35,7 @@ public class TodoListAdapter extends ArrayAdapter<ShowTodoList> {
       TextView tvPriority = (TextView) convertView.findViewById(R.id.tvPriority);
 
       String dueDate = "Due Date: " + todoList.dueDate;
+      tvId.setText(todoList.Id.toString());
       tvTaskName.setText(todoList.taskName);
       tvDueDate.setText(dueDate);
       tvPriority.setText(todoList.priority);

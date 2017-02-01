@@ -31,13 +31,6 @@ public class DelTodoFragment extends DialogFragment {
       return frag;
    }
 
-
-   /*@Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-      // Defines the xml file for the fragment
-      return inflater.inflate(R.layout.fragment_deltodo, parent, false);
-   }*/
-
    @Override
    public Dialog onCreateDialog(Bundle savedInstanceState) {
       Dialog dialog = super.onCreateDialog(savedInstanceState);

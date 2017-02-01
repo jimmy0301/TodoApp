@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.raizlabs.android.dbflow.sql.language.Select;
 
@@ -118,7 +117,7 @@ public class EditTodoFragment extends Fragment implements AdapterView.OnItemSele
       editText = (EditText) getView().findViewById(R.id.editTaskName);
       editText.setText(taskName);
 
-      TodoList todoList = getTodoInfoFromDB(taskName);
+      TodoList todoList = getTodoInfoFromDB(id);
 
       /* Set date picker */
       datePicker = (DatePicker)getView().findViewById(R.id.datePicker);
@@ -150,8 +149,8 @@ public class EditTodoFragment extends Fragment implements AdapterView.OnItemSele
       spinnerStatus.setSelection(todoList.status, true);
    }
 
-   private TodoList getTodoInfoFromDB(String taskName) {
-      TodoList todoList = new Select().from(TodoList.class).where(TodoList_Table.task.eq(taskName)).querySingle();
+   private TodoList getTodoInfoFromDB(Long id) {
+      TodoList todoList = new Select().from(TodoList.class).where(TodoList_Table.id.eq(id)).querySingle();
       return todoList;
    }
 

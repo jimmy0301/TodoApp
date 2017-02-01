@@ -1,11 +1,13 @@
 package com.codepath.todoapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,13 +34,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.R.attr.inputType;
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static com.raizlabs.android.dbflow.config.FlowLog.Level.I;
+
 
 /**
  * Created by keyulun on 2017/1/30.
  */
 
 public class ListTodoFragment extends ListFragment {
-   ArrayList<String> items;
    ArrayList<ShowTodoList> todoLists;
    TodoListAdapter todoListAdapter;
    List <TodoList> todoList;
@@ -53,7 +59,6 @@ public class ListTodoFragment extends ListFragment {
    // The onCreateView method is called when Fragment should create its View object hierarchy,
    // either dynamically or via XML layout inflation.
 
-
    @Override
    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
       // Defines the xml file for the fragment
@@ -62,6 +67,7 @@ public class ListTodoFragment extends ListFragment {
 
    @Override
    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
       inflater.inflate(R.menu.fragment_listtodo_menu, menu);
    }
 
@@ -84,8 +90,9 @@ public class ListTodoFragment extends ListFragment {
    }
 
    private void searchTodo() {
-      EditText inputSearch = (EditText) getView().findViewById(R.id.inputSearch);
+      final EditText inputSearch = (EditText) getView().findViewById(R.id.inputSearch);
       inputSearch.setVisibility(View.VISIBLE);
+      inputSearch.requestFocus();
       inputSearch.addTextChangedListener(new TextWatcher() {
          @Override
          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -94,17 +101,8 @@ public class ListTodoFragment extends ListFragment {
 
          @Override
          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            todoListAdapter.getFilter().filter(charSequence);
-         }
 
-         private void searchItem(String textToSearch) {
-            for (int i = 0; i < todoLists.size(); i++) {
-               Log.d("search","itemName: " + todoLists.get(i).taskName);
-               if (!todoLists.get(i).taskName.startsWith(textToSearch)) {
-                  todoLists.remove(i);
-               }
-            }
-            todoListAdapter.notifyDataSetChanged();
+            todoListAdapter.getFilter().filter(charSequence);
          }
 
          @Override
@@ -124,8 +122,6 @@ public class ListTodoFragment extends ListFragment {
       });
 
       todoListAdapter.notifyDataSetChanged();
-      /*todoListAdapter = new TodoListAdapter(getContext(), todoLists);
-      lvItems.setAdapter(todoListAdapter);*/
    }
 
    private void goToAddTodo() {
@@ -139,13 +135,13 @@ public class ListTodoFragment extends ListFragment {
    @Override
    public void onActivityCreated(Bundle savedInstanceState) {
       super.onActivityCreated(savedInstanceState);
+      final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
       initList();
-
    }
 
    private void initList() {
       readTodoFromDB();
-      //readItems();
       lvItems = (ListView) getActivity().findViewById(R.id.lvItems);
       todoListAdapter = new TodoListAdapter(getContext(), todoLists);
       lvItems.setAdapter(todoListAdapter);
@@ -198,16 +194,16 @@ public class ListTodoFragment extends ListFragment {
          @Override
          public void onItemClick(AdapterView<?> adapterView, View item, int pos, long id) {
             EditTodoFragment editTodoFragment = new EditTodoFragment();
+            ShowTodoList todoListItem = todoListAdapter.getItem(pos);
 
-            Log.d("edit", todoLists.get(pos).taskName);
             Bundle args = new Bundle();
-            args.putLong("itemId", todoLists.get(pos).Id);
-            args.putString("itemText", todoLists.get(pos).taskName);
-            args.putString("itemDueDate", todoLists.get(pos).dueDate);
-            if (todoLists.get(pos).priority.compareTo("H") == 0) {
+            args.putLong("itemId", todoListItem.Id);
+            args.putString("itemText", todoListItem.taskName);
+            args.putString("itemDueDate", todoListItem.dueDate);
+            if (todoListItem.priority.compareTo("H") == 0) {
                args.putInt("itemPriority", 0);
             }
-            else if (todoLists.get(pos).priority.compareTo("M") == 0) {
+            else if (todoListItem.priority.compareTo("M") == 0) {
                args.putInt("itemPriority", 1);
             }
             else {
