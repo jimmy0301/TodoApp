@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+   <TextView
+       android:id="@+id/taskNametxt"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="25dp"
+       android:layout_marginLeft="10dp"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="@string/task_name" />
+
+   <EditText
+       android:id="@+id/editTaskName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="20dp"
+       android:hint="@string/edit_text_hint"
+       android:layout_toRightOf="@+id/taskNametxt"/>
+
+   <View
+       android:id="@+id/SplitLine_hor1"
+       android:layout_width="match_parent"
+       android:layout_height= "2dp"
+       android:layout_below="@+id/editTaskName"
+       android:background="@color/colorPrimaryDark" />
+
+   <TextView
+       android:id="@+id/dueDatetxt"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="25dp"
+       android:layout_marginLeft="10dp"
+       android:layout_below="@+id/SplitLine_hor1"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="@string/due_date" />
+   <DatePicker
+       android:id="@+id/datePicker"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:datePickerMode="spinner"
+       android:calendarViewShown="false"
+       android:layout_toRightOf="@+id/dueDatetxt"
+       android:layout_below="@+id/SplitLine_hor1"/>
+
+   <View
+       android:id="@+id/SplitLine_hor3"
+       android:layout_width="match_parent"
+       android:layout_height= "2dp"
+       android:layout_below="@+id/datePicker"
+       android:background="@color/colorPrimaryDark" />
+
+   <TextView
+       android:id="@+id/priorityTxt"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="25dp"
+       android:layout_below="@+id/SplitLine_hor3"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="@string/priority" />
+   <Spinner
+       android:id="@+id/spinner"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="20dp"
+       android:layout_below="@+id/SplitLine_hor3"
+       android:layout_toRightOf="@+id/priorityTxt"/>
+
+   <View
+       android:id="@+id/SplitLine_hor4"
+       android:layout_width="match_parent"
+       android:layout_height= "2dp"
+       android:layout_below="@+id/spinner"
+       android:background="@color/colorPrimaryDark" />
+
+   <TextView
+       android:id="@+id/statusTxt"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="10dp"
+       android:layout_marginTop="25dp"
+       android:layout_below="@+id/SplitLine_hor4"
+       android:textAppearance="?android:attr/textAppearanceLarge"
+       android:text="@string/status" />
+
+   <Spinner
+       android:id="@+id/spinnerStatus"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="20dp"
+       android:layout_below="@+id/SplitLine_hor4"
+       android:layout_toRightOf="@+id/statusTxt"/>
+
+   <View
+       android:id="@+id/SplitLine_hor5"
+       android:layout_width="match_parent"
+       android:layout_height= "2dp"
+       android:layout_below="@+id/spinnerStatus"
+       android:background="@color/colorPrimaryDark" />
+
+</RelativeLayout>

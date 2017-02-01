@@ -1,52 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/activity_main"
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.codepath.todoapp.MainActivity">
+    android:layout_height="match_parent">
 
-   <Button
-       android:id="@+id/btnAddItem"
-       android:onClick="onAddItem"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignBottom="@+id/etNewItem"
-       android:layout_alignEnd="@+id/lvItems"
-       android:layout_alignRight="@+id/lvItems"
-       android:layout_alignTop="@+id/etNewItem"
-       android:text="Add Item"
-       tools:layout_editor_absoluteX="292dp"
-       tools:layout_editor_absoluteY="457dp"/>
+   <!-- This LinearLayout represents the contents of the screen  -->
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
 
-    <ListView
-        android:layout_width="363dp"
-        android:layout_height="443dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp"
-        android:id="@+id/lvItems"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+      <!-- The ActionBar displayed at the top -->
+      <include
+          layout="@layout/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/etNewItem"
-        android:layout_width="272dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:lines="8"
-        android:minLines="6"
-        android:maxLines="10"
-        android:hint="Add a new item"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="457dp"
-        android:layout_below="@+id/lvItems"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="13dp"/>
 
-</RelativeLayout>
+      <!-- The main content view where fragments are loaded -->
+      <FrameLayout
+          android:id="@+id/flContent"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent" />
+   </LinearLayout>
+
+</android.support.v4.widget.DrawerLayout>
+
