@@ -3,5 +3,7 @@
    <color name="colorPrimary">#3F51B5</color>
    <color name="colorPrimaryDark">#303F9F</color>
    <color name="colorAccent">#FF4081</color>
-   <color name="titleText">#FFFFFF</color>item>
+   <color name="titleText">#FFFFFF</color>
+   <color name="toolbarBg">#673AB7</color>
+   <color name="priority_medium">#FF6F00</color>
 </resources>

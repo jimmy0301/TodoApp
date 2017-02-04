@@ -2,15 +2,14 @@ package com.codepath.todoapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
-
 
 /**
  * Created by keyulun on 2017/1/31.
@@ -46,7 +45,7 @@ public class TodoListAdapter extends ArrayAdapter<ShowTodoList> {
          tvPriority.setTextColor(Color.BLUE);
       }
       else {
-         tvPriority.setTextColor(Color.YELLOW);
+         tvPriority.setTextColor(ContextCompat.getColor(getContext(), R.color.priority_medium));
       }
 
       return convertView;

@@ -24,20 +24,10 @@ import android.widget.ListView;
 
 import com.raizlabs.android.dbflow.sql.language.Select;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static android.R.attr.inputType;
-import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.raizlabs.android.dbflow.config.FlowLog.Level.I;
-
 
 /**
  * Created by keyulun on 2017/1/30.
@@ -91,7 +81,13 @@ public class ListTodoFragment extends ListFragment {
 
    private void searchTodo() {
       final EditText inputSearch = (EditText) getView().findViewById(R.id.inputSearch);
-      inputSearch.setVisibility(View.VISIBLE);
+      if (inputSearch.getVisibility() == View.GONE)
+         inputSearch.setVisibility(View.VISIBLE);
+      else if (inputSearch.getVisibility() == View.VISIBLE) {
+         inputSearch.setVisibility(View.GONE);
+         return;
+      }
+
       inputSearch.requestFocus();
       inputSearch.addTextChangedListener(new TextWatcher() {
          @Override
