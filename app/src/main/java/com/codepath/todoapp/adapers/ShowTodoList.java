@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.adapers;
 
 /**
  * Created by keyulun on 2017/1/31.

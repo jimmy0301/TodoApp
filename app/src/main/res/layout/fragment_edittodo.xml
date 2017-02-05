@@ -7,8 +7,8 @@
        android:id="@+id/taskNametxt"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginTop="25dp"
-       android:layout_marginLeft="10dp"
+       android:layout_marginTop="@dimen/edit_textview_margin_top"
+       android:layout_marginLeft="@dimen/edit_textview_margin_left"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:text="@string/task_name" />
 
@@ -16,14 +16,14 @@
        android:id="@+id/editTaskName"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_margin="20dp"
+       android:layout_margin="@dimen/editText_margin"
        android:hint="@string/edit_text_hint"
        android:layout_toRightOf="@+id/taskNametxt"/>
 
    <View
        android:id="@+id/SplitLine_hor1"
        android:layout_width="match_parent"
-       android:layout_height= "2dp"
+       android:layout_height= "@dimen/edit_divider"
        android:layout_below="@+id/editTaskName"
        android:background="@color/colorPrimaryDark" />
 
@@ -31,8 +31,8 @@
        android:id="@+id/dueDatetxt"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginTop="25dp"
-       android:layout_marginLeft="10dp"
+       android:layout_marginTop="@dimen/edit_textview_margin_top"
+       android:layout_marginLeft="@dimen/edit_textview_margin_left"
        android:layout_below="@+id/SplitLine_hor1"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:text="@string/due_date" />
@@ -48,7 +48,7 @@
    <View
        android:id="@+id/SplitLine_hor3"
        android:layout_width="match_parent"
-       android:layout_height= "2dp"
+       android:layout_height= "@dimen/edit_divider"
        android:layout_below="@+id/datePicker"
        android:background="@color/colorPrimaryDark" />
 
@@ -56,23 +56,24 @@
        android:id="@+id/priorityTxt"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginLeft="10dp"
-       android:layout_marginTop="25dp"
+       android:layout_marginLeft="@dimen/edit_textview_margin_left"
+       android:layout_marginTop="@dimen/edit_textview_margin_top"
        android:layout_below="@+id/SplitLine_hor3"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:text="@string/priority" />
+
    <Spinner
        android:id="@+id/spinner"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_margin="20dp"
+       android:layout_margin="@dimen/spinner_margin"
        android:layout_below="@+id/SplitLine_hor3"
        android:layout_toRightOf="@+id/priorityTxt"/>
 
    <View
        android:id="@+id/SplitLine_hor4"
        android:layout_width="match_parent"
-       android:layout_height= "2dp"
+       android:layout_height= "@dimen/edit_divider"
        android:layout_below="@+id/spinner"
        android:background="@color/colorPrimaryDark" />
 
@@ -80,8 +81,8 @@
        android:id="@+id/statusTxt"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_marginLeft="10dp"
-       android:layout_marginTop="25dp"
+       android:layout_marginLeft="@dimen/edit_textview_margin_left"
+       android:layout_marginTop="@dimen/edit_textview_margin_top"
        android:layout_below="@+id/SplitLine_hor4"
        android:textAppearance="?android:attr/textAppearanceLarge"
        android:text="@string/status" />
@@ -90,14 +91,14 @@
        android:id="@+id/spinnerStatus"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_margin="20dp"
+       android:layout_margin="@dimen/spinner_margin"
        android:layout_below="@+id/SplitLine_hor4"
        android:layout_toRightOf="@+id/statusTxt"/>
 
    <View
        android:id="@+id/SplitLine_hor5"
        android:layout_width="match_parent"
-       android:layout_height= "2dp"
+       android:layout_height= "@dimen/edit_divider"
        android:layout_below="@+id/spinnerStatus"
        android:background="@color/colorPrimaryDark" />
 

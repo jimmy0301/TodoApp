@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.codepath.todoapp.R;
+import com.codepath.todoapp.models.TodoList_Table;
+import com.codepath.todoapp.models.TodoList;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.sql.Date;
@@ -81,11 +84,11 @@ public class EditTodoFragment extends Fragment implements AdapterView.OnItemSele
       Date dueDate = java.sql.Date.valueOf(dateInfo);
 
       TodoList todoList = new TodoList();
-      todoList.id = id;
-      todoList.task = taskName;
-      todoList.dueDate = dueDate;
-      todoList.status = status;
-      todoList.priority = priority;
+      todoList.setId(id);
+      todoList.setTask(taskName);
+      todoList.setDueDate(dueDate);
+      todoList.setStatus(status);
+      todoList.setPrority(priority);
       todoList.save();
    }
 
@@ -146,7 +149,7 @@ public class EditTodoFragment extends Fragment implements AdapterView.OnItemSele
               android.R.layout.simple_spinner_dropdown_item);
 
       spinnerStatus.setAdapter(statusAdapter);
-      spinnerStatus.setSelection(todoList.status, true);
+      spinnerStatus.setSelection(todoList.getStatus(), true);
    }
 
    private TodoList getTodoInfoFromDB(Long id) {

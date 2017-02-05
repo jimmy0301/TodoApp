@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.adapers;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,13 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.codepath.todoapp.R;
+
 import java.util.ArrayList;
+
 
 /**
  * Created by keyulun on 2017/1/31.
  */
 
 public class TodoListAdapter extends ArrayAdapter<ShowTodoList> {
+
    public TodoListAdapter(Context context, ArrayList<ShowTodoList> todoList) {
       super(context, 0, todoList);
    }

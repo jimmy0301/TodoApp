@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!-- listTodo fragment -->
+   <dimen name="item_font_size">20dp</dimen>
+   <dimen name="search_bar_padding">10dp</dimen>
+   <dimen name="listview_divider_height">1dp</dimen>
+   <dimen name="listview_layout_width">370dp</dimen>
+   <dimen name="layout_editor_absolute">8dp</dimen>
+
+   <!-- editTodo fragment -->
+   <dimen name="spinner_margin">20dp</dimen>
+   <dimen name="edit_divider">2dp</dimen>
+   <dimen name="edit_textview_margin_top">25dp</dimen>
+   <dimen name="edit_textview_margin_left">10dp</dimen>
+   <dimen name="editText_margin">20dp</dimen>
+</resources>

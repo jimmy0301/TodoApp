@@ -1,15 +1,12 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,16 +15,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.codepath.todoapp.R;
+import com.codepath.todoapp.models.TodoList_Table;
+import com.codepath.todoapp.adapers.ShowTodoList;
+import com.codepath.todoapp.adapers.TodoListAdapter;
+import com.codepath.todoapp.models.TodoList;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 
 /**
  * Created by keyulun on 2017/1/30.
@@ -38,6 +39,7 @@ public class ListTodoFragment extends ListFragment {
    TodoListAdapter todoListAdapter;
    List <TodoList> todoList;
    ListView lvItems;
+   boolean hasSorted = false;
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class ListTodoFragment extends ListFragment {
             searchTodo();
             return true;
          case R.id.menu_sort_by_dueDate:
+            hasSorted = true;
             sortTodoList();
             return true;
          default:
@@ -83,41 +86,45 @@ public class ListTodoFragment extends ListFragment {
       final EditText inputSearch = (EditText) getView().findViewById(R.id.inputSearch);
       if (inputSearch.getVisibility() == View.GONE)
          inputSearch.setVisibility(View.VISIBLE);
-      else if (inputSearch.getVisibility() == View.VISIBLE) {
-         inputSearch.setVisibility(View.GONE);
-         return;
-      }
 
       inputSearch.requestFocus();
       inputSearch.addTextChangedListener(new TextWatcher() {
          @Override
          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            if (hasSorted) {
+               sortTodoList();
+            }
          }
 
          @Override
          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            todoListAdapter.getFilter().filter(charSequence);
+            if (charSequence.toString().compareTo("") == 0) {
+               initList();
+            }
+            else {
+               todoListAdapter.getFilter().filter(charSequence);
+            }
          }
 
          @Override
          public void afterTextChanged(Editable editable) {
-
+            if (hasSorted) {
+               sortTodoList();
+            }
          }
       });
    }
 
    private void sortTodoList() {
-      Collections.sort(todoLists, new Comparator<ShowTodoList>() {
+      todoListAdapter.sort(new Comparator<ShowTodoList>(){
          @Override
          public int compare(ShowTodoList showTodoList, ShowTodoList t1) {
-
-            return showTodoList.dueDate.compareTo(t1.dueDate);
+            return t1.dueDate.compareTo(showTodoList.dueDate);
          }
       });
 
       todoListAdapter.notifyDataSetChanged();
+      lvItems.setAdapter(todoListAdapter);
    }
 
    private void goToAddTodo() {
@@ -138,8 +145,12 @@ public class ListTodoFragment extends ListFragment {
 
    private void initList() {
       readTodoFromDB();
+
       lvItems = (ListView) getActivity().findViewById(R.id.lvItems);
       todoListAdapter = new TodoListAdapter(getContext(), todoLists);
+      if (hasSorted) {
+         sortTodoList();
+      }
       lvItems.setAdapter(todoListAdapter);
       setupListViewListener();
    }
@@ -153,9 +164,9 @@ public class ListTodoFragment extends ListFragment {
          String priorityInLoop;
          ShowTodoList showTodoList;
 
-         if (todoList.get(i).priority == 0)
+         if (todoList.get(i).getPriority() == 0)
             priorityInLoop = "H";
-         else if (todoList.get(i).priority == 1) {
+         else if (todoList.get(i).getPriority() == 1) {
             priorityInLoop = "M";
          }
          else {
@@ -163,14 +174,14 @@ public class ListTodoFragment extends ListFragment {
          }
          String dueDateShow;
 
-         if (todoList.get(i).dueDate == null) {
+         if (todoList.get(i).getDueDate() == null) {
             dueDateShow = "1987-01-23";
          }
          else {
-            dueDateShow = todoList.get(i).dueDate.toString();
+            dueDateShow = todoList.get(i).getDueDate().toString();
          }
 
-         showTodoList = new ShowTodoList(todoList.get(i).id, todoList.get(i).task, dueDateShow, priorityInLoop);
+         showTodoList = new ShowTodoList(todoList.get(i).getId(), todoList.get(i).getTask(), dueDateShow, priorityInLoop);
          todoLists.add(showTodoList);
       }
    }
@@ -219,7 +230,7 @@ public class ListTodoFragment extends ListFragment {
 
          @Override
          public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
-            showAlertDiaolog(todoList.get(pos).id, todoLists.get(pos).taskName);
+            showAlertDiaolog(todoList.get(pos).getId(), todoLists.get(pos).taskName);
             return true;
          }
 

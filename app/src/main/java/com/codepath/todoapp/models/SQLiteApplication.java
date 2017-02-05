@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.models;
 
 import android.app.Application;
 

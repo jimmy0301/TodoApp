@@ -5,8 +5,9 @@
    <string name="due_date">Due Date:</string>
    <string name="priority">Priority:</string>
    <string name="status">Status:</string>
-   <string name="drawer_open">Open navigation drawer</string>
-   <string name="drawer_close">Close navigation drawer</string>
+   <string name="delete_button_ok">OK</string>
+   <string name="delete_button_cancel">Cancel</string>
+
    <string-array name="priority">
       <item>High</item>
       <item>Medium</item>

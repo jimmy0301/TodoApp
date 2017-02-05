@@ -13,13 +13,13 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_below="@+id/alertText"
-       android:text="Ok"/>
+       android:text="@string/delete_button_ok"/>
 
    <Button
        android:id="@+id/cancel"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_toRightOf="@+id/ok"
-       android:text="Cancel"/>
+       android:text="@string/delete_button_cancel"/>
 
 </RelativeLayout>

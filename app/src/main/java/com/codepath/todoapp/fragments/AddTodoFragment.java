@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.codepath.todoapp.R;
+import com.codepath.todoapp.models.TodoList;
 
 import java.sql.Date;
 
@@ -110,7 +113,6 @@ public class AddTodoFragment extends Fragment implements AdapterView.OnItemSelec
       String dateInfo = datePicker.getYear() + "-" + month + "-" + datePicker.getDayOfMonth();
       dueDate = java.sql.Date.valueOf(dateInfo);
 
-
       Log.d("writeToDB", "Year: " + datePicker.getYear());
       Log.d("writeToDB", "Month: " + datePicker.getMonth());
       Log.d("writeToDB", "Day: " + datePicker.getDayOfMonth());
@@ -120,10 +122,10 @@ public class AddTodoFragment extends Fragment implements AdapterView.OnItemSelec
       Log.d("writeToDB", "status: " + status);
       Log.d("writeToDB", "priority: " + priority);
       TodoList todoList = new TodoList();
-      todoList.task = taskName;
-      todoList.dueDate = dueDate;
-      todoList.status = status;
-      todoList.priority = priority;
+      todoList.setTask(taskName);
+      todoList.setDueDate(dueDate);
+      todoList.setStatus(status);
+      todoList.setPrority(priority);
       todoList.save();
    }
 

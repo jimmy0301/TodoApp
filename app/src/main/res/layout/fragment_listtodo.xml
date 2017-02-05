@@ -5,16 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codepath.todoapp.MainActivity">
+    tools:context="com.codepath.todoapp.activities.MainActivity">
 
     <!-- Editext for Search -->
     <EditText
         android:id="@+id/inputSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:textSize="@dimen/item_font_size"
+        android:paddingTop="@dimen/search_bar_padding"
+        android:paddingBottom="@dimen/search_bar_padding"
         android:layout_centerVertical="true"
         android:ellipsize="start"
         android:gravity="center"
@@ -25,12 +25,12 @@
         android:inputType="textVisiblePassword"/>
 
     <ListView
-        android:layout_width="363dp"
-        android:layout_height="443dp"
-        android:divider="#AA00FF"
-        android:dividerHeight="1dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp"
+        android:layout_width="@dimen/listview_layout_width"
+        android:layout_height="match_parent"
+        android:divider="@color/listview_divider"
+        android:dividerHeight="@dimen/listview_divider_height"
+        tools:layout_editor_absoluteY="@dimen/layout_editor_absolute"
+        tools:layout_editor_absoluteX="@dimen/layout_editor_absolute"
         android:transcriptMode="normal"
         android:layout_below="@+id/inputSearch"
         android:id="@+id/lvItems"

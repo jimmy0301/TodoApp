@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.codepath.todoapp.fragments.ListTodoFragment;
+import com.codepath.todoapp.R;
 
 public class MainActivity extends AppCompatActivity {
    private Toolbar toolbar;

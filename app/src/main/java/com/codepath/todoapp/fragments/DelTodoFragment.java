@@ -1,4 +1,4 @@
-package com.codepath.todoapp;
+package com.codepath.todoapp.fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -10,6 +10,9 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+
+import com.codepath.todoapp.R;
+import com.codepath.todoapp.models.TodoList;
 
 /**
  * Created by keyulun on 2017/1/31.
@@ -48,7 +51,7 @@ public class DelTodoFragment extends DialogFragment {
          public void onClick(DialogInterface dialog, int which) {
             // on success
             TodoList todoList = new TodoList();
-            todoList.id = id;
+            todoList.setId(id);
             todoList.delete();
             backToTodoList();
          }
