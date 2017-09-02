@@ -15,7 +15,7 @@ import java.sql.Date;
 public class TodoList extends BaseModel{
    @Column
    @PrimaryKey(autoincrement = true)
-   Long id;
+   long id;
 
    @Column
    String task;

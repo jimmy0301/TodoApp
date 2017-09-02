@@ -19,10 +19,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.codepath.todoapp.R;
-import com.codepath.todoapp.models.TodoList_Table;
 import com.codepath.todoapp.adapers.ShowTodoList;
 import com.codepath.todoapp.adapers.TodoListAdapter;
 import com.codepath.todoapp.models.TodoList;
+import com.codepath.todoapp.models.TodoList_Table;
 import com.raizlabs.android.dbflow.sql.language.Select;
 
 import java.util.ArrayList;
